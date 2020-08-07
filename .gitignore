@@ -1,0 +1,6 @@
+bee-board/node_modules
+bee-board/.cache
+bee-board/build
+gridsome-starter-strapi/.cache
+gridsome-starter-strapi/node_modules
+
