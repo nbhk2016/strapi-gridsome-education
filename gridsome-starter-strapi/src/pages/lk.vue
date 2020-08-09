@@ -10,7 +10,13 @@
       <tr><td>E-mail</td><td>{{ email }}</td></tr>
       <tr><td>Accaunt type</td><td>{{ accaunt_type }}</td></tr>
     </table>
-
+    <h2 v-if="accaunt_type == 'farmer'">Your addvertisements</h2>
+    <table v-if="accaunt_type == 'farmer'">
+      <tr v-for="item in posts">
+        <td>{{item.culture}}</td>
+        <td>{{item.created_at}}</td>
+      </tr>
+    </table>
   </Layout>
 </template>
 
@@ -26,7 +32,8 @@ export default {
       id: '',
   		username: localStorage.username,
   		email: '',
-      accaunt_type: ''
+      accaunt_type: '',
+      posts: []
   	}
   },
   mounted: function () {
@@ -38,6 +45,14 @@ export default {
       this.id = response.data.id
       this.email = response.data.email
       this.accaunt_type = response.data.role.name
+    })
+
+    axios.get(`http://localhost:1337/advertisements?user.username=${this.username}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.jwt}`,
+      }
+    }).then(response => {
+      this.posts = response.data
     })
   }
 }
