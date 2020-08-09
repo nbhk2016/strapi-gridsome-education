@@ -6,8 +6,10 @@
       </strong>
       <nav class="nav">
         <g-link class="nav__link" to="/">Home</g-link>
-        <g-link class="nav__link" to="/about/">About</g-link>
-        <g-link class="nav__link" to="/register/">Register</g-link>
+        <g-link class="nav__link" to="/register/" v-if="!username">Register</g-link>
+        <g-link class="nav__link" to="/login/" v-if="!username">Login</g-link>
+        <g-link class="nav__link" to="/lk/">{{ username }} </g-link>
+        <a href="#" v-on:click="log_out" v-if="username">Log out</a>
       </nav>
     </header>
     <slot/>
@@ -21,6 +23,24 @@ query {
   }
 }
 </static-query>
+
+<script type="text/javascript">
+export default {
+  data(){
+    return {
+      username: localStorage.username
+    }
+  },
+
+  methods: {
+    log_out: () => {
+      delete localStorage.username
+      delete localStorage.jwt
+      location.reload()
+    }
+  }
+}
+</script>
 
 <style>
 body {

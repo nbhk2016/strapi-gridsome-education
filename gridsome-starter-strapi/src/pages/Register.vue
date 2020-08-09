@@ -52,13 +52,13 @@ export default {
 		  })
 		  .then(response => {
 		    // Handle success.
-		    console.log('Well done!');
-		    console.log('User profile', response.data.user);
-		    console.log('User token', response.data.jwt);
+		    alert('Well done!')
+        localStorage.setItem('username', response.data.user.username)
+		    localStorage.setItem('jwt', response.data.jwt)
 		  })
 		  .catch(error => {
 		    // Handle error.
-		    console.log('An error occurred:', error.response);
+		    alert('Incorect credentials!')
 		  });
   		}
   	}
