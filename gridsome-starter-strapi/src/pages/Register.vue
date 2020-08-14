@@ -53,7 +53,7 @@ export default {
 		  .then(response => {
 		    // Handle success.
 		    alert('Well done!')
-        localStorage.setItem('username', response.data.user.username)
+        	localStorage.setItem('username', response.data.user.username)
 		    localStorage.setItem('jwt', response.data.jwt)
 		  })
 		  .catch(error => {

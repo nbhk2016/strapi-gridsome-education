@@ -3,11 +3,11 @@
 
     <!-- Learn how to use images here: https://gridsome.org/docs/images -->
 
-    <h1>Register</h1>
+    <h1>Create publication</h1>
 
     <form>
-    	<p><input type="text" placeholder="username" v-model="username"></p>
-    	<p><input type="password" placeholder="password" v-model="password"></p>
+    	<p><input type="text" placeholder="culture" v-model="culture"></p>
+    	<p><textarea cols="30" rows="10" placeholder="description" v-model="description"></textarea></p>
    		<p><button v-on:click.prevent="regEvent">Login!</button></p>
     </form>
 
@@ -23,26 +23,27 @@ export default {
 
   data() {
   	return {
-  		username: '',
-  		password: '',
+  		culture: '',
+  		description: '',
   	}
   },
   methods: {
   	regEvent: function(){
   		axios
-		  .post('http://localhost:1337/auth/local/', {
-		    identifier: this.username,
-		    password: this.password,
-		  })
+		  .post('http://localhost:1337/advertisements', {
+		    culture: this.culture,
+        	description: this.description
+		  }, {
+		    headers: {
+		      Authorization: `Bearer ${localStorage.jwt}`
+        }
+      })
 		  .then(response => {
-		    // Handle success.
 		    alert('Well done!')
-		    localStorage.setItem('username', response.data.user.username)
-        localStorage.setItem('jwt', response.data.jwt)
 		  })
 		  .catch(error => {
 		    // Handle error.
-		    alert("Incorrect credentials!")
+		    alert("Error")
 		  });
   		}
   	}

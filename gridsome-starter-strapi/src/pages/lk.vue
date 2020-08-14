@@ -10,13 +10,14 @@
       <tr><td>E-mail</td><td>{{ email }}</td></tr>
       <tr><td>Accaunt type</td><td>{{ accaunt_type }}</td></tr>
     </table>
-    <h2 v-if="accaunt_type == 'farmer'">Your addvertisements</h2>
-    <table v-if="accaunt_type == 'farmer'">
+    <h2 v-if="accaunt_type == 'Farmer'">Your addvertisements</h2>
+    <table v-if="accaunt_type == 'Farmer'">
       <tr v-for="item in posts">
         <td>{{item.culture}}</td>
         <td>{{item.created_at}}</td>
       </tr>
     </table>
+    <p><a href="/create">Create</a></p>
   </Layout>
 </template>
 
