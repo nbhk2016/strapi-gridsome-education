@@ -7,7 +7,7 @@
 module.exports = {
   siteName: 'Gridsome',
   plugins: [
-  	 {
+  	 /*{
 	   use: '@gridsome/source-strapi',
 	   options: {
 	     apiURL: 'http://localhost:1337',
@@ -20,6 +20,6 @@ module.exports = {
 	       password: ''
 	     }
 	   }
-	 }
-  ]
+	 }*/
+	]
 }
